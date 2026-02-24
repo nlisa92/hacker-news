@@ -6,7 +6,14 @@ function CommentsTree({ rootIds = [], comments }) {
   }
 
   return (
-    <div style={{ marginLeft: "20px", display: "flex", flexDirection: "column", gap: "12px" }}>
+    <div
+      style={{
+        marginLeft: "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      }}
+    >
       {rootIds.map((id) => {
         const comment = comments[id];
         if (!comment) return <p key={id}>Загрузка комментария...</p>;
