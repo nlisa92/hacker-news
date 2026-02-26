@@ -1,13 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { getCommentById } from "../../api/hackerNewsApi";
 
 export const fetchCommentById = createAsyncThunk(
   "comments/fetchCommentById",
   async (id) => {
-    const { data } = await axios.get(
-      `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-    );
-    return data;
+    return await getCommentById(id);
   },
 );
 

@@ -1,20 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { getTopNewsIds, getNewsById } from "../../api/hackerNewsApi";
 
 export const fetchTopNews = createAsyncThunk("news/fetchTopNews", async () => {
-  const { data } = await axios.get(
-    "https://hacker-news.firebaseio.com/v0/topstories.json",
-  );
-  return data.slice(0, 100);
+  const ids = await getTopNewsIds();
+  return ids.slice(0, 100);
 });
-
 export const fetchNewsById = createAsyncThunk(
   "news/fetchNewsById",
   async (id) => {
-    const { data } = await axios.get(
-      `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-    );
-    return data;
+    return await getNewsById(id);
   },
 );
 
