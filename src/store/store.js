@@ -26,9 +26,7 @@ const saveStateMiddleware = (store) => (next) => (action) => {
   const { news, comments } = store.getState();
 
   const limitedComments = Object.fromEntries(
-    Object.entries(comments)
-      .slice(-500)
-      .map(([id, c]) => [id, { id: c.id, text: c.text, kids: c.kids }]),
+    Object.entries(comments).slice(-500),
   );
   localStorage.setItem("news", JSON.stringify(news));
   localStorage.setItem("comments", JSON.stringify(limitedComments));
